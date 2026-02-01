@@ -1,272 +1,495 @@
-<think>
-First, the user is asking to add more to make it more attractive and perfect. The original code is a romantic website for "RASMALAI" with pages, animations, etc.
-
-
-## Enhancing Design Appeal  
-- The user wants to improve the attractiveness and perfection of a romantic website for "RASMALAI.
-</think>```html
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<title>For RASMALAI 💖</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
-body{height:100vh;overflow:hidden;color:#fff;background:linear-gradient(180deg,#0d0d0d,#1a0a2a);transition:background 10s linear;}
-.card{background:rgba(255,255,255,0.08);backdrop-filter:blur(16px);padding:34px 26px;width:92%;max-width:440px;border-radius:28px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.6);animation:pop .6s ease;margin:auto;margin-top:6vh;position:relative;transition:box-shadow 1s, transform 0.5s ease;}
-.card:hover{box-shadow:0 40px 80px rgba(255,77,109,0.6); transform: scale(1.02);}
-h1{color:#ffd6e0;font-size:1.8rem;text-shadow: 0 0 10px rgba(255, 214, 224, 0.5);}
-h3{color:#ffd6e0;margin-top:20px;text-shadow: 0 0 5px rgba(255, 214, 224, 0.3);}
-p{font-size:1.12rem;line-height:1.8;text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);}
-button{margin:10px;padding:14px 28px;font-size:1rem;border:none;border-radius:30px;background:#ff4d6d;color:white;cursor:pointer;transition:.3s;}
-button:hover{transform:scale(1.12) rotateZ(2deg);box-shadow:0 0 12px #ff4d6d,0 0 20px #ff4d6d inset;}
-.hidden{display:none;}
-@keyframes pop{0%{transform:scale(.7);opacity:0}50%{transform:scale(1.05);}100%{transform:scale(1);opacity:1;}}
-@keyframes shimmer{0%{background-position:-200px 0;}100%{background-position:200px 0;}}
+  <meta charset="UTF-8" />
+  <title>For RASMALAI 💖✨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --pink: #ff4d6d;
+      --light-pink: #ffd6e0;
+      --purple: #9d4edd;
+      --dark: #0f001a;
+    }
 
-/* Floating stars & hearts */
-.floating-star{position:fixed;color:white;font-size:8px;opacity:0.8;animation:floatStar linear infinite;}
-@keyframes floatStar{0%{transform:translateY(0) translateX(0);}100%{transform:translateY(-100vh) translateX(50px);}}
-.background-text{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:80px;color:rgba(255,255,255,0.05);font-weight:900;pointer-events:none;white-space:nowrap;animation:fadeText 10s infinite alternate;}
-@keyframes fadeText{0%{opacity:0;}50%{opacity:0.05;}100%{opacity:0;}}
-#constellation{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
-#cutenessBar{background:linear-gradient(90deg,#ff4d6d,#ff99cc,#ff4d6d);background-size:200% 100%;animation:shimmer 2s linear infinite;}
-.gif-container{position:absolute;pointer-events:none;}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+      background: linear-gradient(135deg, #1a0033, #330033, #4d001a);
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
 
-/* New additions for attractiveness */
-.progress-bar{background:rgba(255,255,255,0.1);border-radius:25px;width:90%;margin:20px auto;height:10px;overflow:hidden;}
-.progress-fill{background:linear-gradient(90deg,#ff4d6d,#ff99cc);height:100%;width:0%;transition:width 0.5s ease;}
-.music-toggle{position:fixed;top:20px;right:20px;background:rgba(255,255,255,0.1);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:0.3s;}
-.music-toggle:hover{background:rgba(255,255,255,0.2);}
-.final-page{background:rgba(255,255,255,0.08);backdrop-filter:blur(16px);padding:34px 26px;width:92%;max-width:440px;border-radius:28px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.6);margin:auto;margin-top:6vh;position:relative;}
-@keyframes glow{0%{text-shadow: 0 0 5px #ff4d6d;}50%{text-shadow: 0 0 20px #ff4d6d, 0 0 30px #ff4d6d;}100%{text-shadow: 0 0 5px #ff4d6d;}}
-.glow-text{animation: glow 2s infinite;}
-.quiz-option{margin:10px;padding:10px;background:rgba(255,255,255,0.1);border-radius:15px;cursor:pointer;transition:0.3s;}
-.quiz-option:hover{background:rgba(255,255,255,0.2);transform:scale(1.05);}
-.photo-display{margin:20px auto;width:200px;height:200px;border-radius:50%;overflow:hidden;border:3px solid #ff4d6d;}
-.photo-display img{width:100%;height:100%;object-fit:cover;}
-.heart-clicker{position:fixed;bottom:20px;left:20px;background:rgba(255,255,255,0.1);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.5rem;}
-@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.2);}100%{transform:scale(1);}}
-.pulse{animation:pulse 1s infinite;}
-</style>
+    .background-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-size: clamp(60px, 18vw, 220px);
+      font-family: 'Dancing Script', cursive;
+      color: rgba(255, 214, 224, 0.07);
+      pointer-events: none;
+      z-index: -2;
+      white-space: nowrap;
+      animation: slowDrift 60s linear infinite;
+    }
+
+    @keyframes slowDrift {
+      0%   { transform: translate(-50%, -50%) rotate(-15deg); }
+      100% { transform: translate(-40%, -55%) rotate(-12deg); }
+    }
+
+    .card, .final-page {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 2.2rem 1.8rem;
+      width: 90%;
+      max-width: 460px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      margin: 5vh auto;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .card.visible, .final-page.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 35px 90px rgba(255, 77, 109, 0.35);
+    }
+
+    h1 { 
+      font-size: 2.1rem; 
+      color: var(--light-pink); 
+      margin-bottom: 1rem; 
+      text-shadow: 0 0 20px rgba(255, 214, 224, 0.6); 
+      font-weight: 600;
+    }
+
+    h3 { color: var(--light-pink); margin: 1.5rem 0 0.8rem; }
+
+    p { 
+      font-size: 1.08rem; 
+      line-height: 1.7; 
+      opacity: 0.95; 
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+
+    button {
+      margin: 1rem 0.5rem;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(90deg, var(--pink), #ff8cab);
+      color: white;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
+    }
+
+    button:hover {
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 15px 40px rgba(255, 77, 109, 0.55);
+    }
+
+    .hidden { display: none !important; }
+
+    /* Floating elements */
+    .float-item {
+      position: fixed;
+      font-size: clamp(14px, 3vw, 28px);
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0;
+      animation: floatUp linear forwards;
+    }
+
+    @keyframes floatUp {
+      0%   { opacity: 0; transform: translateY(120vh) scale(0.6) rotate(0deg); }
+      10%  { opacity: 0.9; }
+      100% { opacity: 0; transform: translateY(-20vh) translateX(var(--drift)) scale(1.1) rotate(360deg); }
+    }
+
+    /* Progress */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      z-index: 10;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff4d6d, #ff99cc, #d484ff);
+      background-size: 200% 100%;
+      animation: shimmer 4s linear infinite;
+      transition: width 0.6s ease;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Music toggle */
+    .music-toggle {
+      position: fixed;
+      top: 16px; right: 16px;
+      width: 54px; height: 54px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s;
+      z-index: 20;
+    }
+    .music-toggle:hover { background: rgba(255,77,109,0.3); transform: scale(1.15); }
+
+    /* Heart clicker */
+    .heart-clicker {
+      position: fixed;
+      bottom: 20px; left: 20px;
+      width: 64px; height: 64px;
+      background: rgba(255,255,255,0.13);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.1rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+      z-index: 15;
+    }
+    .heart-clicker:hover { transform: scale(1.2); background: rgba(255,77,109,0.4); }
+    .heart-count {
+      position: absolute;
+      top: -8px; right: -8px;
+      background: var(--pink);
+      color: white;
+      font-size: 0.8rem;
+      padding: 4px 9px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255,77,109,0.7);
+    }
+
+    .glow-text { animation: glow 2.5s infinite alternate; }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d; }
+      to   { text-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff99cc, 0 0 60px #d484ff; }
+    }
+
+    .photo-display {
+      width: 180px; height: 180px;
+      margin: 1.5rem auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid rgba(255,77,109,0.5);
+      box-shadow: 0 0 40px rgba(255,77,109,0.4);
+    }
+    .photo-display img { width: 100%; height: 100%; object-fit: cover; }
+
+    .quiz-option {
+      margin: 12px auto;
+      padding: 14px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.35s;
+      max-width: 280px;
+    }
+    .quiz-option:hover {
+      background: rgba(255,77,109,0.25);
+      transform: scale(1.06);
+    }
+  </style>
 </head>
 <body>
 
-<div class="background-text">RASMALAI</div>
-<canvas id="constellation"></canvas>
+<div class="background-text">RASMALAI 💕</div>
+
+<!-- Progress -->
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
 <!-- Music Toggle -->
-<div class="music-toggle" onclick="toggleMusic()">🎵</div>
+<div class="music-toggle" onclick="toggleMusic()">🎶</div>
 <audio id="bgMusic" loop>
-  <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav"> <!-- Placeholder; replace with a romantic song URL like a free instrumental -->
+  <!-- Replace with real free romantic/lofi link e.g. from Pixabay -->
+  <source src="https://cdn.pixabay.com/audio/2023/08/07/audio_8b9d7e8f9e.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Progress Bar -->
-<div class="progress-bar">
-  <div class="progress-fill" id="progressFill"></div>
-</div>
-
 <!-- Heart Clicker -->
-<div class="heart-clicker pulse" onclick="clickHeart()">💖</div>
+<div class="heart-clicker" onclick="clickHeart()">💖<span class="heart-count" id="heartCount">0</span></div>
 
 <!-- Pages -->
-<div class="card" id="p1">
-  <h1>Hey <span id="name"></span> 🌙</h1>
-  <p>Ye ek special website hai, bas aapke liye 🤍<br><br>Aap thoda ruk kar ye sab feel kar sakti hain…</p>
-  <button onclick="start()">Continue ✨</button>
+<div class="card visible" id="p1">
+  <h1>Hey <span id="name"></span> 🌸✨</h1>
+  <p>Ye chhoti si duniya sirf hum dono ke liye bani hai…<br>Thoda sa dil khol kar dekho na 💗</p>
+  <button onclick="start()">Shuru karein? 💫</button>
 </div>
 
 <div class="card hidden" id="p2">
-  <p>Aap jab saamne hoti hain toh sab kuch shaant ho jaata hai 🌌<br>Jaise raat ke is aasman mein ek star zyada chamakne lagta ho…</p>
-  <button onclick="next(2)">Hmm 💕</button>
+  <p>Jab aap hansti ho, mera dil ek alag hi rhythm mein dhadakta hai…<br>Jaise raat mein sirf hum dono ki awaaz ho 🌙</p>
+  <button onclick="next(2)">Sach mein? 🥰</button>
 </div>
 
 <div class="card hidden" id="p3">
-  <p>Mujhe perfect banna nahi aata… par genuinely care karna aata hai 🤍<br>Aapki presence hi cozy aur happy feel karati hai.</p>
-  <button onclick="next(3)">Aur bolo 🌙</button>
+  <p>Main perfect nahi hoon…<br>Par aapke liye har roz thoda behtar banne ki koshish karta hoon 🤍</p>
+  <button onclick="next(3)">Acha lagta hai ye sunke 💕</button>
 </div>
 
 <div class="card hidden" id="p4">
-  <p>Kabhi sirf saath baithna, kabhi ek warm hug 🤗<br>Ya bas ye jaanna ki koi hai jo aapke liye khushi mehsoos karta hai…</p>
-  <button onclick="next(4)">I feel it 🥺</button>
+  <p>Bas aapke saath chup rehna bhi kitna khoobsurat lagta hai…<br>Words ki zarurat hi nahi padti kabhi-kabhi 🤗</p>
+  <button onclick="next(4)">Bil kul 💭</button>
 </div>
 
 <div class="card hidden" id="p5">
-  <p>Mujhe aapse kuch chahiye nahi… na promises, na pressure 💭<br>Bas ek fun interaction hai, jo aapko smile karaye 🙂</p>
-  <button onclick="next(5)">Okay 💌</button>
+  <p>Koi pressure nahi… koi expectation nahi…<br>Bas aapki smile dekh kar mera din ban jaata hai 😊</p>
+  <button onclick="next(5)">Aap bhi aise hi ho 💌</button>
 </div>
 
 <div class="card hidden" id="p6">
-  <h1>💫 Fun Choices</h1>
-  <p>Aapko kya karna acha lagta hai? 😍<br><br>
-     1️⃣ Hug 🤗<br>
-     2️⃣ Kiss 😘<br>
-     3️⃣ Mere saath time bitana 🌸
-  </p>
-  <div class="gif-container" id="gifP6"></div>
-  <button onclick="choose()">Choose ✨</button>
+  <h1>Choose Your Vibe 🌷</h1>
+  <p>Aapke saath kya karna sabse zyada pasand hai?</p>
+  <div class="quiz-option" onclick="choose(1)">Lamba sa Hug 🤗</div>
+  <div class="quiz-option" onclick="choose(2)">Sweet Kiss 😘</div>
+  <div class="quiz-option" onclick="choose(3)">Saath mein time bitana 🌌</div>
 </div>
 
 <div class="card hidden" id="p7">
-  <h1>🌸 Aapki Tarif</h1>
-  <p>
-    Aap itni pyari, charming aur smart hain… <br>
-    Mujhe aapke saath time bitana bohot acha lagta hai 💞<br>
-    Aapko dekhte rehna meri favourite feeling hai 🌙✨<br>
-    Aapki cheeks ko chuma jaaye, ye mann karta hai 😘<br>
-    Aapke lips ki sweetness ko taste karne ki iccha meri bas badhti ja rahi hai 💖<br>
-    Aapki aankhon mein kho jaana aur sirf aapko dekhna chahta hoon 🌌<br>
-    Aapke saath har pal magical aur playful lagta hai ✨💫<br>
-    Aapki vibes 🌌 har jagah positive energy failati hain 💫
-  </p>
-  <div class="gif-container" id="gifP7"></div>
-  <h3>Cuteness Meter ❤️</h3>
-  <div style="background:rgba(255,255,255,0.1);border-radius:25px;width:90%;margin:20px auto;height:30px;overflow:hidden;">
-    <div id="cutenessBar" style="width:0%;height:100%;border-radius:25px;text-align:center;color:white;font-weight:bold;line-height:30px;">0%</div>
+  <h1 class="glow-text">Aap Meri Favourite Feeling Ho 💞</h1>
+  <p>Aapki aankhein… woh smile… woh baatein…<br>sab kuch itna pyara ki dil karta hai bas aapko dekhta rahun 💖<br>Aapki har chhoti si baat dil ko chhoo jaati hai 🌸</p>
+  <h3>Cuteness Level ❤️</h3>
+  <div style="background:rgba(255,255,255,0.12);border-radius:30px;height:14px;overflow:hidden;margin:1rem auto;max-width:320px;">
+    <div id="cutenessBar" style="width:0%;height:100%;background:linear-gradient(90deg,#ff4d6d,#ff99cc,#d484ff);transition:width 2.5s ease;border-radius:30px;"></div>
   </div>
-  <button onclick="shareYes()">📲 Share on WhatsApp</button>
+  <button onclick="next(7)">Continue ✨</button>
 </div>
 
-<!-- New Quiz Page -->
 <div class="card hidden" id="p8">
-  <h1>💕 Quick Quiz</h1>
-  <p>Kya aapko pata hai? Mujhe aapke baare mein sab pata hai! 😏<br><br>Kya aapki favourite color pink hai?</p>
-  <div class="quiz-option" onclick="quizAnswer(true)">Haan! 💖</div>
-  <div class="quiz-option" onclick="quizAnswer(false)">Nahi 😅</div>
+  <h1>Chhota sa Quiz 😏💕</h1>
+  <p>Kya aapki favourite colour pink ya purple hai?</p>
+  <div class="quiz-option" onclick="quizAnswer(true)">Haan! 🎀</div>
+  <div class="quiz-option" onclick="quizAnswer(false)">Nahi ya dono! 😅</div>
 </div>
 
-<!-- Photo Page -->
 <div class="card hidden" id="p9">
-  <h1>🌟 Aapki Photo</h1>
-  <p>Ye photo aapki smile ko capture karti hai… Har baar dekhne se dil jeet jaata hai! 📸</p>
+  <h1>Aapki Yeh Smile… 😍</h1>
+  <p>Har baar dekh kar dil garden-garden ho jaata hai 🌷</p>
   <div class="photo-display">
-    <img src="https://via.placeholder.com/200x200/ff4d6d/ffffff?text=RASMALAI" alt="RASMALAI"> <!-- Replace with actual photo URL -->
+    <img src="https://via.placeholder.com/300/ff4d6d/ffffff?text=Rasmalaai+💖" alt="RASMALAI">
+    <!-- ← Yahan apni real photo daal dena -->
   </div>
-  <button onclick="next(9)">Next 💫</button>
+  <button onclick="next(9)">Aage dekhein 💫</button>
 </div>
 
-<!-- Final Page -->
 <div class="final-page hidden" id="p10">
-  <h1 class="glow-text">Thank You, RASMALAI! 💖</h1>
-  <p>Ye journey bas shuruat thi… Aapki smile ne sab kuch special bana diya. 🌟<br>Har pal aapke saath magical hai. Let's create more memories! 😘<br><br>Virtual Gift: Ek bohot bada hug! 🤗</p>
-  <button onclick="restart()">Start Over 🔄</button>
+  <h1 class="glow-text">RASMALAI… You Are My Everything 💖🌟</h1>
+  <p>Ye safar abhi shuru hua hai…<br>Aapke saath har pal ek chhoti si khushi hai.<br>Thank you for being YOU 🤗💕<br>Ab ek bohot bada virtual hug accept karo! 🫂✨</p>
+  <button onclick="restart()">Phir se? 🔄💗</button>
 </div>
+
+<canvas id="constellation"></canvas>
 
 <script>
-// Name typing
-let text="RASMALAI",i=0;
-(function type(){if(i<text.length){document.getElementById("name").innerHTML+=text[i++];setTimeout(type,170);}})();
-
-// Constellation with click interaction
-const canvas=document.getElementById("constellation");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
-let stars=[], connections=[], heartCount=0;
-for(let i=0;i<100;i++){stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:Math.random()*0.5-0.25,vy:Math.random()*0.5-0.25});}
-canvas.addEventListener('click', (e) => {
-  let rect = canvas.getBoundingClientRect();
-  let x = e.clientX - rect.left, y = e.clientY - rect.top;
-  stars.forEach(s => {if(Math.abs(s.x - x) < 10 && Math.abs(s.y - y) < 10){spawnParticles(10);}});
-});
-function drawConstellation(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.strokeStyle='rgba(255,182,193,0.6)';
-  ctx.lineWidth=1;
-  stars.forEach(s=>{s.x+=s.vx;s.y+=s.vy;if(s.x<0||s.x>canvas.width)s.vx*=-1;if(s.y<0||s.y>canvas.height)s.vy*=-1;ctx.beginPath();ctx.arc(s.x,s.y,2,0,Math.PI*2);ctx.fillStyle='pink';ctx.fill();});
-  for(let i=0;i<stars.length;i++){for(let j=i+1;j<stars.length;j++){
-    let dx=stars[i].x-stars[j].x;let dy=stars[i].y-stars[j].y;if(Math.sqrt(dx*dx+dy*dy)<120){ctx.beginPath();ctx.moveTo(stars[i].x,stars[i].y);ctx.lineTo(stars[j].x,stars[j].y);ctx.stroke();}}}}
-setInterval(drawConstellation,50);
-
-// Floating hearts
-function floatHearts(count=20){
-  for(let i=0;i<count;i++){
-    let h=document.createElement("div");
-    h.innerHTML=["💖","🌸","✨","🌟"][Math.floor(Math.random()*4)];
-    h.style.position="fixed";
-    h.style.left=Math.random()*100+"%";
-    h.style.top=Math.random()*100+"%";
-    h.style.fontSize=(5+Math.random()*15)+"px";
-    h.style.opacity=0.3+Math.random()*0.5;
-    h.style.transition="all 25s linear";
-    document.body.appendChild(h);
-    animateHeart(h);
+// Typing name
+const nameEl = document.getElementById("name");
+const text = "RASMALAI";
+let i = 0;
+function type() {
+  if (i < text.length) {
+    nameEl.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 160);
   }
 }
-function animateHeart(h){let x=Math.random()*window.innerWidth,y=Math.random()*window.innerHeight;h.style.left=x+"px";h.style.top=y+"px";setTimeout(()=>{h.remove();floatHearts(1);},25000);}
-floatHearts();
+type();
 
-// Page navigation with progress
-let currentPage=1;
-function start(){next(1);}
-function next(n){document.getElementById("p"+n).classList.add("hidden");document.getElementById("p"+(n+1)).classList.remove("hidden");cardShake(n+1);updateProgress(n+1);}
-function cardShake(n){let c=document.getElementById("p"+n);c.style.transform="translateX(-10px)";setTimeout(()=>c.style.transform="translateX(0)",100);}
-function updateProgress(page){let progress=(page/10)*100;document.getElementById("progressFill").style.width=progress+"%";}
-
-// Fun choice page
-function choose(){
-  document.getElementById("p6").classList.add("hidden");
-  document.getElementById("p7").classList.remove("hidden");
-  showCuteness();
-  spawnParticles(50);
-  spawnConfetti(30);
-  addGIF("p6","https://media.giphy.com/media/l4KibWpBGWchSqCRy/giphy.gif");
-  addGIF("p7","https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif");
+// Music
+const audio = document.getElementById("bgMusic");
+let isPlaying = false;
+function toggleMusic() {
+  if (isPlaying) {
+    audio.pause();
+    isPlaying = false;
+  } else {
+    audio.play().catch(()=>{});
+    isPlaying = true;
+  }
 }
 
-// Quiz
-function quizAnswer(correct){
-  if(correct){spawnConfetti(20);alert("Correct! Aapko pata hai mujhe 😘");}else{alert("Galat! Par aap abhi bhi perfect hain 💕");}
+// Floating items (hearts, stars, sparkles only)
+function createFloatItem() {
+  const items = ["💖","🌸","✨","💫","🌟","🫧"];
+  const el = document.createElement("div");
+  el.className = "float-item";
+  el.textContent = items[Math.floor(Math.random()*items.length)];
+  el.style.left = Math.random()*100 + "vw";
+  el.style.--drift = (Math.random()*80 - 40) + "px";
+  el.style.animationDuration = (18 + Math.random()*22) + "s";
+  el.style.animationDelay = Math.random()*5 + "s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(), 45000);
+}
+setInterval(createFloatItem, 900);
+
+// Constellation background
+const canvas = document.getElementById("constellation");
+const ctx = canvas.getContext("2d");
+let stars = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = [];
+  for(let i=0; i<80; i++){
+    stars.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      size: Math.random()*2 + 0.8,
+      vx: (Math.random()-0.5)*0.4,
+      vy: (Math.random()-0.5)*0.4
+    });
+  }
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+function drawStars() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s => {
+    s.x += s.vx; s.y += s.vy;
+    if(s.x<0||s.x>canvas.width) s.vx*=-1;
+    if(s.y<0||s.y>canvas.height) s.vy*=-1;
+
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
+    ctx.fillStyle = "rgba(255,182,193,0.9)";
+    ctx.fill();
+  });
+
+  for(let i=0;i<stars.length;i++){
+    for(let j=i+1;j<stars.length;j++){
+      let d = Math.hypot(stars[i].x-stars[j].x, stars[i].y-stars[j].y);
+      if(d < 130){
+        ctx.beginPath();
+        ctx.moveTo(stars[i].x, stars[i].y);
+        ctx.lineTo(stars[j].x, stars[j].y);
+        ctx.strokeStyle = `rgba(255,105,180,${0.4 - d/300})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+  }
+}
+setInterval(drawStars, 40);
+
+// Page logic
+let current = 1;
+const totalPages = 10;
+
+function showPage(n) {
+  document.querySelectorAll(".card, .final-page").forEach(el => el.classList.add("hidden"));
+  document.querySelectorAll(".card, .final-page").forEach(el => el.classList.remove("visible"));
+  const page = document.getElementById("p" + n) || document.getElementById("p10");
+  page.classList.remove("hidden");
+  setTimeout(() => page.classList.add("visible"), 50);
+  current = n;
+  document.getElementById("progressFill").style.width = ((n / totalPages) * 100) + "%";
+}
+
+function next(n) {
+  showPage(n+1);
+  spawnHearts(8);
+}
+
+function start() { next(1); }
+
+function restart() {
+  current = 1;
+  showPage(1);
+  document.getElementById("heartCount").textContent = "0";
+}
+
+// Choice → cuteness meter
+function choose(opt) {
+  showPage(7);
+  const bar = document.getElementById("cutenessBar");
+  let percent = 68 + opt*11; // 68–90%
+  bar.style.width = percent + "%";
+  spawnHearts(30);
+  spawnConfetti(20);
+}
+
+function quizAnswer(correct) {
+  if(correct) {
+    alert("Hehe… mujhe pata tha! 😘");
+    spawnConfetti(25);
+  } else {
+    alert("Phir bhi aap best ho 💗");
+  }
   next(8);
 }
 
-// GIF helper
-function addGIF(pageId,gifUrl){
-  let container=document.getElementById("gif"+pageId.toUpperCase());
-  let img=document.createElement("img");
-  img.src=gifUrl;
-  img.style.width="120px"; img.style.height="120px"; img.style.position="absolute";
-  img.style.bottom="10px"; img.style.right="10px";
-  container.appendChild(img);
+// Heart clicker
+let heartClicks = 0;
+function clickHeart() {
+  heartClicks++;
+  document.getElementById("heartCount").textContent = heartClicks;
+  spawnHearts(12);
+  if(heartClicks % 5 === 0) spawnConfetti(15);
 }
 
-// Particle explosion
-function spawnParticles(count){
-  for(let i=0;i<count;i++){
-    let p=document.createElement("div");
-    p.innerHTML=["💖","✨","🌸","🌟","🎉"][Math.floor(Math.random()*5)];
-    p.style.position="fixed";
-    p.style.left=50 + Math.random()*100 - 50 + "%";
-    p.style.top="50%";
-    p.style.fontSize=(10+Math.random()*20)+"px";
-    p.style.opacity=0.9;
-    p.style.transition="all 3s linear";
-    document.body.appendChild(p);
-    setTimeout(()=>{p.style.left=Math.random()*100+"%"; p.style.top="100%"; p.style.opacity=0;},50);
-    setTimeout(()=>p.remove(),3500);
+function spawnHearts(count) {
+  for(let i=0; i<count; i++){
+    const h = document.createElement("div");
+    h.className = "float-item";
+    h.textContent = ["💖","💗","💕","✨"][Math.floor(Math.random()*4)];
+    h.style.left = Math.random()*100 + "vw";
+    h.style.top = "100vh";
+    h.style.--drift = (Math.random()*120 - 60) + "px";
+    h.style.animationDuration = (5 + Math.random()*8) + "s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(), 14000);
   }
 }
 
-// Mini confetti
-function spawnConfetti(count){
-  for(let i=0;i<count;i++){
-    let c=document.createElement("div");
-    c.innerHTML=["🎉","💫","✨","🌈","🌸"][Math.floor(Math.random()*5)];
-    c.style.position="fixed";
-    c.style.left=Math.random()*100+"%";
-    c.style.top="-5%";
-    c.style.fontSize=(10+Math.random()*20)+"px";
-    c.style.opacity=0.9;
-    c.style.transition="all 3s linear";
+function spawnConfetti(count) {
+  for(let i=0; i<count; i++){
+    const c = document.createElement("div");
+    c.className = "float-item";
+    c.textContent = ["🎉","✨","🌸","💫"][Math.floor(Math.random()*4)];
+    c.style.left = Math.random()*100 + "vw";
+    c.style.top = "-10vh";
+    c.style.animationDuration = (3 + Math.random()*4) + "s";
     document.body.appendChild(c);
-    setTimeout(()=>{c.style.top="100%";c.style.opacity=0;},50);
-    setTimeout(()=>c.remove(),3500);
+    setTimeout(()=>c.remove(), 10000);
   }
 }
 
-// Cuteness meter
-function showCuteness(){
-  let bar=document.getElementById("cutenessBar");
-  let
+// Start
+showPage(1);
+</script>
+</body>
+</html>
