@@ -14,6 +14,7 @@ video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;
 h1{color:#ffd6e0;font-size:1.8rem;}
 h3{color:#ffd6e0;margin-top:20px;}
 p{font-size:1.12rem;line-height:1.8;}
+textarea{resize:none;}
 button{margin:10px;padding:14px 28px;font-size:1rem;border:none;border-radius:30px;background:#ff4d6d;color:white;cursor:pointer;transition:.3s;}
 button:hover{transform:scale(1.12) rotateZ(2deg);box-shadow:0 0 12px #ff4d6d,0 0 20px #ff4d6d inset;}
 .secondary{background:#555;}
@@ -31,61 +32,80 @@ button:hover{transform:scale(1.12) rotateZ(2deg);box-shadow:0 0 12px #ff4d6d,0 0
 </head>
 <body>
 
+<!-- Background video -->
 <video autoplay muted loop playsinline>
   <source src="https://cdn.pixabay.com/vimeo/239742285/starry-sky-11155.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 <div class="background-text">RASMALAI</div>
 
+<!-- Audio -->
 <audio id="bgm" loop src="https://cdn.pixabay.com/audio/2022/03/15/audio_7c1e0cfa37.mp3"></audio>
 <audio id="bell" src="https://cdn.pixabay.com/audio/2022/03/10/audio_3b8d3c8f44.mp3"></audio>
 
 <!-- Pages -->
+
+<!-- 1. Intro Story -->
 <div class="card" id="p1">
   <h1>Hey <span id="name"></span> 🌙</h1>
-  <p>Ye ek normal website nahi hai… Ye wo ehsaas hain jo main shabdon mein kam aur dil se zyada mehsoos karta hoon 🤍<br><br>Agar aap thoda sa waqt yahin ruk kar de sakti hain…</p>
+  <p>Ye ek special website hai, bas aapke liye 🤍<br><br>Aap thoda ruk kar ye sab feel kar sakti hain…</p>
   <button onclick="start()">Continue ✨</button>
 </div>
 
 <div class="card hidden" id="p2">
-  <p>Aap jab saamne hoti hain toh sab kuch thoda shaant ho jaata hai 🌌<br><br>Jaise raat ke is aasman mein ek star thoda zyada chamakne lagta ho…</p>
+  <p>Aap jab saamne hoti hain toh sab kuch shaant ho jaata hai 🌌<br>Jaise raat ke is aasman mein ek star zyada chamakne lagta ho…</p>
   <button onclick="next(2)">Hmm 💕</button>
 </div>
 
 <div class="card hidden" id="p3">
-  <p>Mujhe perfect banna nahi aata… par genuinely care karna aata hai 🤍<br><br>Aapki respect mere liye feelings se bhi upar hai.</p>
+  <p>Mujhe perfect banna nahi aata… par genuinely care karna aata hai 🤍<br>Aapki presence hi cozy aur happy feel karati hai.</p>
   <button onclick="next(3)">Aur bolo 🌙</button>
 </div>
 
 <div class="card hidden" id="p4">
-  <p>Kabhi sirf saath baithna, kabhi ek warm hug 🤗<br><br>Aur kabhi bas ye jaanna ki koi hai jo bina wajah aapke baare mein sochta hai…</p>
+  <p>Kabhi sirf saath baithna, kabhi ek warm hug 🤗<br>Ya bas ye jaanna ki koi hai jo aapke liye khushi mehsoos karta hai…</p>
   <button onclick="next(4)">I feel it 🥺</button>
 </div>
 
 <div class="card hidden" id="p5">
-  <p>Mujhe aapse kuch chahiye nahi… na promises, na pressure 💭<br><br>Bas ek honest sawal jo dil se aa raha hai…</p>
+  <p>Mujhe aapse kuch chahiye nahi… na promises, na pressure 💭<br>Bas ek fun interaction hai, jo aapko smile karaye 🙂</p>
   <button onclick="next(5)">Okay 💌</button>
 </div>
 
+<!-- 6. Fun Choice Page -->
 <div class="card hidden" id="p6">
-  <h1>💍 Ek Sawal</h1>
-  <p>Kya aap meri life ka hissa banengi? <br><br>Aur agar jawab “naa” bhi ho… toh wo bhi main poori izzat ke saath accept karunga 🤍</p>
-  <button onclick="yes()">Yes ❤️</button>
-  <button class="secondary" onclick="no()">No 💭</button>
+  <h1>💫 Fun Choices</h1>
+  <p>Aapko kya karna acha lagta hai? 😍<br><br>
+     1️⃣ Hug 🤗<br>
+     2️⃣ Kiss 😘<br>
+     3️⃣ Mere saath time bitana 🌸
+  </p>
+  <button onclick="choose('hug')">Hug 🤗</button>
+  <button onclick="choose('kiss')">Kiss 😘</button>
+  <button onclick="choose('time')">Time 🌸</button>
 </div>
 
-<div class="card hidden" id="pYes">
-  <h1>🌌 Thank You</h1>
-  <p>Aapka “haan” mere liye sirf jawab nahi… ye ek zimmedari hai 🤍<br><br>Aapke saath ye safar main dheere, sincerely aur hamesha aapki choice ke saath chalna chahta hoon.</p>
-  <button onclick="yesConfetti()">✨ Confetti Dekhein</button>
+<!-- 7. Secret Suggestion Box -->
+<div class="card hidden" id="p8">
+  <h1>💌 Aapka Suggestion</h1>
+  <p>Yahaan aap kuch bhi likh sakti hain: 💖<br>Apni marzi se bataiye aapko kya acha lagta hai aur mere saath time bitana kaisa lagta hai…</p>
+  <textarea id="userInput" placeholder="Yahaan likhiye..." style="width:90%;height:100px;border-radius:15px;padding:10px;font-size:1rem;"></textarea>
+  <br>
+  <button onclick="submitSuggestion()">Submit ✨</button>
+  <div id="secretSuggestion" style="display:none;"></div>
 </div>
 
-<div class="card hidden" id="pNo">
-  <h1>🤍 Koi Baat Nahi</h1>
-  <p>Aapka “naa” bilkul theek hai…<br><br>Main aapki choice ki poori respect karta hoon 🤍<br><br>Chahe raasta jo bhi ho, main dil se aapko hi choose karta rahunga. <br><br>Aap khush rahen, safe rahen — yehi meri sincere wish hai ✨</p>
+<!-- 8. Secret Bad Habits Box -->
+<div class="card hidden" id="p9">
+  <h1>💭 Honest Feedback</h1>
+  <p>Yahaan aap bata sakti hain: meri kaunsi chhoti ya badi bad habits aapko achi nahi lagti…</p>
+  <textarea id="badHabitsInput" placeholder="Yahaan likhiye..." style="width:90%;height:100px;border-radius:15px;padding:10px;font-size:1rem;"></textarea>
+  <br>
+  <button onclick="submitBadHabits()">Submit ✨</button>
+  <div id="secretBadHabits" style="display:none;"></div>
 </div>
 
-<!-- Appreciation + Cuteness Page -->
+<!-- 9. Cuteness / Appreciation Page -->
 <div class="card hidden" id="p7">
   <h1>🌸 Aapki Tarif</h1>
   <p>
@@ -103,12 +123,7 @@ button:hover{transform:scale(1.12) rotateZ(2deg);box-shadow:0 0 12px #ff4d6d,0 0
 <script>
 // Name typing
 let text="RASMALAI",i=0;
-(function type(){
-  if(i<text.length){
-    document.getElementById("name").innerHTML+=text[i++];
-    setTimeout(type,170);
-  }
-})();
+(function type(){if(i<text.length){document.getElementById("name").innerHTML+=text[i++];setTimeout(type,170);}})();
 
 // Floating stars
 function createFloatingStars(count=30){
@@ -129,109 +144,49 @@ createFloatingStars();
 function start(){document.getElementById("bgm").play();next(1);}
 function next(n){document.getElementById("p"+n).classList.add("hidden");document.getElementById("p"+(n+1)).classList.remove("hidden");}
 
-// YES / NO with emojis
-let yesEmojis=["❤️💍🌌✨","💖🌠🌙💫","😍💌🌟🤍","🌹💫💖🌌","💞✨🌙❤️"];
+// YES / NO with random emojis
+let yesEmojis=["❤️💞🌌✨","💖🌠🌙💫","😍💌🌟🤍","🌹💫💖🌌","💞✨🌙❤️"];
 let noEmojis=["🤍🌙🕊️","💭🌌🤍","✨🌙🤍","🌙🤍💭","🕊️🌌💭"];
 function randomEmoji(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
-// YES function → goes to Cuteness Page
-function yes(){
-  document.getElementById("bell").play();
-  yesConfetti();
-  showCuteness();
-}
-
-// NO function
-function no(){
+// Fun choice page
+function choose(option){
   document.getElementById("p6").classList.add("hidden");
-  document.getElementById("pNo").classList.remove("hidden");
-  noGlowStars();
+  document.getElementById("p8").classList.remove("hidden"); // Suggestion box next
+  console.log("User choice secretly: "+option);
+  document.getElementById("secretChoice")?.innerHTML="User chose: "+option;
 }
 
-// Constellation heart
-function constellation(){
-  let points=[[45,30],[55,30],[60,38],[55,48],[50,58],[45,48],[40,38]];
-  points.forEach((p,i)=>{
-    setTimeout(()=>{
-      let s=document.createElement("div");
-      s.className="star";
-      s.innerHTML="⭐";
-      s.style.left=p[0]+"%";
-      s.style.top=p[1]+"%";
-      s.style.fontSize="22px";
-      document.body.appendChild(s);
-    },i*300);
-  });
+// Submit secret suggestion
+function submitSuggestion(){
+  let input=document.getElementById("userInput").value.trim();
+  if(!input){alert("Kuch likhiye pehle! 😊");return;}
+  console.log("Secret suggestion: "+input);
+  document.getElementById("secretSuggestion").innerHTML="User secretly wrote: "+input;
+  alert("Thanks! 💖 Aapka message record ho gaya hai…");
+  document.getElementById("p8").classList.add("hidden");
+  document.getElementById("p9").classList.remove("hidden"); // Bad habits page
 }
 
-// Confetti for YES
-function yesConfetti(){
-  for(let i=0;i<50;i++){
-    let c=document.createElement("div");
-    c.innerHTML="💖";
-    c.style.position="fixed";
-    c.style.left=Math.random()*100+"%";
-    c.style.top="-5%";
-    c.style.fontSize=(10+Math.random()*20)+"px";
-    c.style.opacity=0.8;
-    c.style.transform=`rotate(${Math.random()*360}deg)`;
-    c.style.transition="all 3s linear";
-    document.body.appendChild(c);
-    setTimeout(()=>{c.style.top="100%";c.style.opacity=0;},50);
-    setTimeout(()=>c.remove(),3500);
-  }
-}
-
-// NO glow stars
-function noGlowStars(){
-  let stars=document.querySelectorAll(".floating-star");
-  stars.forEach(s=>{
-    s.style.transition="all 2s ease";
-    s.style.color="#aaa";
-    s.style.opacity=0.5;
-  });
+// Submit secret bad habits
+function submitBadHabits(){
+  let input=document.getElementById("badHabitsInput").value.trim();
+  if(!input){alert("Kuch likhiye pehle! 😊");return;}
+  console.log("User's secret bad habits: "+input);
+  document.getElementById("secretBadHabits").innerHTML="User secretly wrote: "+input;
+  alert("Thanks! 💖 Aapka honest feedback record ho gaya hai…");
+  document.getElementById("p9").classList.add("hidden");
+  document.getElementById("p7").classList.remove("hidden"); // Cuteness meter page
+  showCuteness();
 }
 
 // Cuteness Page
 function showCuteness(){
-  document.getElementById("p6").classList.add("hidden");
-  document.getElementById("p7").classList.remove("hidden");
-  let bar = document.getElementById("cutenessBar");
-  let value = 0;
-  let target = 100 + Math.floor(Math.random()*21); // 100-120%
-  let interval = setInterval(()=>{
-    if(value < target){
-      value++;
-      bar.style.width = value + "%";
-      bar.innerHTML = value + "%";
-    } else clearInterval(interval);
-  },30);
+  let bar=document.getElementById("cutenessBar");
+  let value=0;
+  let target=100+Math.floor(Math.random()*21);
+  let interval=setInterval(()=>{if(value<target){value++;bar.style.width=value+"%";bar.innerHTML=value+"%";}else clearInterval(interval);},30);
 }
 
 // WhatsApp share
-function shareYes(){
-  let msg=`Aapne "haan" kaha ${randomEmoji(yesEmojis)}
-
-Ye sirf ek answer nahi,
-ye ek naya safar hai 🌌
-
-Main is choice ki hamesha respect karunga
-aur sincerely aapke saath chalna chahta hoon 💍✨`;
-  let url="https://wa.me/?text="+encodeURIComponent(msg);
-  window.open(url,"_blank");
-}
-function shareNo(){
-  let msg=`Aapne "naa" kaha ${randomEmoji(noEmojis)}
-
-Aur wo bilkul theek hai.
-Aapki choice ki poori respect hai 🌙
-
-Chahe raasta alag ho,
-khushi aapke saath rahe —
-yehi meri sincere wish hai ✨`;
-  let url="https://wa.me/?text="+encodeURIComponent(msg);
-  window.open(url,"_blank");
-}
-</script>
-</body>
-</html>
+function share
