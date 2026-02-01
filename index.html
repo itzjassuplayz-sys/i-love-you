@@ -1,75 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>I Love You ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 Special Love Message 💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: column;
+    text-align: center;
+    color: #fff;
+  }
 
-    .card {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      animation: pop 1s ease;
-    }
+  h1 {
+    font-size: 3rem;
+    margin: 20px;
+    animation: typing 3s steps(20) 1 forwards, blink 0.7s infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.15em solid #fff;
+  }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
 
-    p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-    }
+  #message {
+    font-size: 1.5rem;
+    margin: 20px;
+    min-height: 50px;
+  }
 
-    .heart {
-      font-size: 3rem;
-      animation: beat 1s infinite;
-      margin: 15px 0;
-    }
+  button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 25px;
+    background: #ff6f91;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-    }
+  button:hover {
+    transform: scale(1.1);
+    background: #ff467e;
+  }
 
-    @keyframes pop {
-      from { transform: scale(0.7); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: float 4s linear infinite;
+  }
 
-    .name {
-      margin-top: 15px;
-      font-style: italic;
-      opacity: 0.9;
-    }
-  </style>
+  .heart::before,
+  .heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .heart::before { top: -10px; left: 0; }
+  .heart::after { left: 10px; top: 0; }
+
+  @keyframes float {
+    0% { transform: translateY(0) rotate(45deg); opacity:1; }
+    100% { transform: translateY(-600px) rotate(45deg); opacity:0; }
+  }
+</style>
 </head>
 <body>
-  <div class="card">
-    <h1>I Love You 💖</h1>
-    <div class="heart">❤️</div>
-    <p>
-      Tum meri zindagi ka wo hissa ho  
-      jiske bina sab adhoora lagta hai.  
-      Har smile, har moment —  
-      sirf tumhare saath special lagta hai.
-    </p>
-    <p class="name">— Always Yours 🌸</p>
-  </div>
+
+<h1>💌 I Love You 💌</h1>
+<div id="message">You are amazing 💖</div>
+<button onclick="newMessage()">Show Me Another 💌</button>
+
+<script>
+  const messages = [
+    "You light up my world ✨",
+    "You are my sunshine 🌞",
+    "Every moment with you is magic 💫",
+    "You make my heart skip 💓",
+    "You are my dream come true 🌸",
+    "I love your smile 😍",
+    "You complete me ❤️",
+    "Life is sweeter with you 🍬"
+  ];
+
+  function newMessage() {
+    const msg = messages[Math.floor(Math.random() * messages.length)];
+    document.getElementById('message').innerText = msg;
+    createHeart();
+  }
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.width = heart.style.height = (10 + Math.random()*20) + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => { heart.remove(); }, 4000);
+  }
+</script>
+
 </body>
 </html>
