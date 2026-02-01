@@ -2,122 +2,187 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>For RASMALAI 💍</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 Special Love Message 💖</title>
+
 <style>
-  body {
-    margin: 0;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    flex-direction: column;
-    text-align: center;
-    color: #fff;
-  }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  height:100vh;
+  overflow:hidden;
+  color:#fff;
+}
+video{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:-1;
+}
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(14px);
+  padding:32px 26px;
+  width:92%;
+  max-width:420px;
+  border-radius:26px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.5);
+  animation:pop .6s ease;
+  margin:auto;
+  margin-top:12vh;
+}
+h1{color:#ffd6e0}
+p{font-size:1.15rem;line-height:1.7}
+button{
+  margin:10px;
+  padding:14px 26px;
+  font-size:1rem;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+}
+.secondary{background:#444;position:absolute}
+.hidden{display:none}
 
-  h1 {
-    font-size: 3rem;
-    margin: 20px;
-    animation: typing 3s steps(20) 1 forwards, blink 0.7s infinite;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 0.15em solid #fff;
-  }
+@keyframes pop{
+  from{transform:scale(.7);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
 
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-  @keyframes blink {
-    50% { border-color: transparent; }
-  }
-
-  #message {
-    font-size: 1.5rem;
-    margin: 20px;
-    min-height: 50px;
-  }
-
-  button {
-    padding: 15px 25px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 25px;
-    background: #ff6f91;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  button:hover {
-    transform: scale(1.1);
-    background: #ff467e;
-  }
-
-  .heart {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: red;
-    transform: rotate(45deg);
-    animation: float 4s linear infinite;
-  }
-
-  .heart::before,
-  .heart::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: red;
-    border-radius: 50%;
-  }
-
-  .heart::before { top: -10px; left: 0; }
-  .heart::after { left: 10px; top: 0; }
-
-  @keyframes float {
-    0% { transform: translateY(0) rotate(45deg); opacity:1; }
-    100% { transform: translateY(-600px) rotate(45deg); opacity:0; }
-  }
+.star{
+  position:absolute;
+  color:white;
+  animation:appear .5s ease forwards;
+}
+@keyframes appear{
+  from{opacity:0;transform:scale(.2)}
+  to{opacity:1;transform:scale(1)}
+}
 </style>
 </head>
+
 <body>
 
-<h1>💌 I Love You 💌</h1>
-<div id="message">You are amazing 💖</div>
-<button onclick="newMessage()">Show Me Another 💌</button>
+<!-- ONLINE NIGHT SKY VIDEO -->
+<video autoplay muted loop playsinline>
+  <source src="https://cdn.pixabay.com/vimeo/239742285/starry-sky-11155.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<!-- ONLINE AUDIO -->
+<audio id="bgm" loop src="https://cdn.pixabay.com/audio/2022/03/15/audio_7c1e0cfa37.mp3"></audio>
+<audio id="bell" src="https://cdn.pixabay.com/audio/2022/03/10/audio_3b8d3c8f44.mp3"></audio>
+
+<!-- PAGE 1 -->
+<div class="card" id="p1">
+  <h1>Hey <span id="name"></span> 🌙</h1>
+  <p>
+    Is shaant raat mein  
+    ek baat hai jo sirf aapke liye hai 💖
+  </p>
+  <button onclick="start()">Continue ✨</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card hidden" id="p2">
+  <p>
+    Aapki presence  
+    meri life ko thoda aur khoobsurat bana deti hai… 🌌
+  </p>
+  <button onclick="next(2)">Hmm 💕</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="card hidden" id="p3">
+  <p>
+    Mujhe perfect banna nahi aata…  
+    par dil se saath nibhana aata hai 🤍
+  </p>
+  <button onclick="next(3)">Aur bolo 💌</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="card hidden" id="p4">
+  <p>
+    Jab baatein khatam ho jaayein  
+    tab ek hug sab kuch keh deta hai 🤗
+  </p>
+  <button onclick="next(4)">I feel this 🥺</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="card hidden" id="p5">
+  <h1>💍 Ek Aakhri Sawal</h1>
+  <p>
+    Kya aap  
+    meri life ka hissa banengi? 💖
+  </p>
+  <button onclick="yes()">Yes ❤️</button>
+  <button class="secondary" id="noBtn" onmouseover="moveNo()">No 🙈</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="card hidden" id="p6">
+  <h1>🌌 Forever Starts Here</h1>
+  <p>
+    Aapka “haan”  
+    meri zindagi ka sabse khoobsurat jawaab hai 💖
+  </p>
+  <button onclick="constellation()">Watch the Stars ✨</button>
+</div>
 
 <script>
-  const messages = [
-    "You light up my world ✨",
-    "You are my sunshine 🌞",
-    "Every moment with you is magic 💫",
-    "You make my heart skip 💓",
-    "You are my dream come true 🌸",
-    "I love your smile 😍",
-    "You complete me ❤️",
-    "Life is sweeter with you 🍬"
-  ];
-
-  function newMessage() {
-    const msg = messages[Math.floor(Math.random() * messages.length)];
-    document.getElementById('message').innerText = msg;
-    createHeart();
+/* name typing */
+let text="RASMALAI",i=0;
+(function type(){
+  if(i<text.length){
+    document.getElementById("name").innerHTML+=text[i++];
+    setTimeout(type,180);
   }
+})();
 
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.width = heart.style.height = (10 + Math.random()*20) + 'px';
-    document.body.appendChild(heart);
-    setTimeout(() => { heart.remove(); }, 4000);
-  }
+function start(){
+  document.getElementById("bgm").play();
+  next(1);
+}
+function next(n){
+  document.getElementById("p"+n).classList.add("hidden");
+  document.getElementById("p"+(n+1)).classList.remove("hidden");
+}
+function moveNo(){
+  let b=document.getElementById("noBtn");
+  b.style.top=Math.random()*80+"%";
+  b.style.left=Math.random()*80+"%";
+}
+function yes(){
+  document.getElementById("bell").play();
+  next(5);
+}
+function constellation(){
+  let points=[[45,30],[55,30],[60,38],[55,50],[50,60],[45,50],[40,38]];
+  points.forEach((p,i)=>{
+    setTimeout(()=>{
+      let s=document.createElement("div");
+      s.className="star";
+      s.innerHTML="⭐";
+      s.style.left=p[0]+"%";
+      s.style.top=p[1]+"%";
+      s.style.fontSize="22px";
+      document.body.appendChild(s);
+    },i*300);
+  });
+}
 </script>
 
 </body>
