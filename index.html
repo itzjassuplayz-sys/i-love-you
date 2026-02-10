@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sorry Rasmalaai 💔</title>
+  <title>Sorry 🤍</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #200033, #330022);
+      background: linear-gradient(135deg, #1a001f, #330022);
       color: white;
       font-family: Arial, sans-serif;
       display: flex;
@@ -20,26 +20,24 @@
       display: none;
       max-width: 90%;
       padding: 40px;
-      background: rgba(0,0,0,0.4);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px #000;
+      background: rgba(0,0,0,0.45);
+      border-radius: 22px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 35px #000;
     }
-    .page.active {
-      display: block;
-    }
+    .page.active { display: block; }
     h1 {
       font-size: 3.2rem;
-      color: #ffccdd;
+      color: #ffd6e8;
       margin-bottom: 20px;
     }
     p {
-      font-size: 1.5rem;
-      line-height: 1.6;
-      margin: 30px 0;
+      font-size: 1.45rem;
+      line-height: 1.7;
+      margin: 28px 0;
     }
     button {
-      padding: 15px 40px;
+      padding: 14px 38px;
       font-size: 1.4rem;
       background: #ff4d6d;
       color: white;
@@ -48,7 +46,7 @@
       cursor: pointer;
     }
     button:hover {
-      background: #ff6699;
+      background: #ff6f91;
       transform: scale(1.05);
     }
     .music {
@@ -73,7 +71,7 @@
     }
     .heart {
       position: absolute;
-      font-size: 3rem;
+      font-size: 2.8rem;
       opacity: 0;
       animation: rise 12s linear infinite;
     }
@@ -89,35 +87,50 @@
 <div class="music" onclick="toggleMusic()">🎵</div>
 <div class="hearts" id="hearts"></div>
 
-<!-- Pages -->
+<!-- Page 1 -->
 <div class="page active" id="p1">
-  <h1>Sorry Rasmalaai 💔</h1>
+  <h1>Sorry 🤍</h1>
   <p>
-    Mujhse galti ho gayi…<br>
-    Shayad lafzon mein, shayad rawaiye mein,<br>
-    par dil se kabhi aapko dukh dena mera irada nahi tha 🥺
+    Mujhse ek galti ho gayi…<br>
+    main hamesha aapko <b>“aap”</b> hi bolta hoon,<br>
+    par us pal zabaan phisal gayi 😔
   </p>
-  <button onclick="nextPage(2)">Aage padhein?</button>
+  <button onclick="nextPage(2)">Aage padhein</button>
 </div>
 
+<!-- Page 2 -->
 <div class="page" id="p2">
-  <h1>Mujhe Afsos Hai 🌧️</h1>
+  <h1>Ye Meri Galti Hai</h1>
   <p>
-    Aapki khamoshi mujhe meri galti yaad dilati hai,<br>
-    aur har pal ye sochta hoon kaash waqt thoda sa peeche le ja sakta…<br>
-    Main sach mein maafi chahta hoon 💗
+    Galti sirf lafzon ki thi,<br>
+    na soch galat thi aur na hi irada.<br>
+    Agar usse aapko bura laga ho,<br>
+    to main dil se maafi chahta hoon 💔
   </p>
-  <button onclick="nextPage(3)">Dil se 💔</button>
+  <button onclick="nextPage(3)">Please samjhiye</button>
 </div>
 
+<!-- Page 3 -->
 <div class="page" id="p3">
-  <h1>Ek Mauka? 🤍</h1>
+  <h1>Respect 🤍</h1>
   <p>
-    Agar mumkin ho,<br>
-    to mujhe apni galti sudharne ka ek mauka de do…<br>
-    Kyunki aap mere liye bahut mayne rakhti ho 🌙
+    Aapki respect mere liye bahut maayne rakhti hai.<br>
+    Jo lafz galti se nikal gaya,<br>
+    wo meri soch ka hissa kabhi nahi tha.
   </p>
-  <button onclick="nextPage(1)">Phir se padhein 🔄</button>
+  <button onclick="nextPage(4)">Ek baat aur</button>
+</div>
+
+<!-- Page 4 -->
+<div class="page" id="p4">
+  <h1>Bas Itna 🤍</h1>
+  <p>
+    Main aage se aur bhi zyada dhyaan rakhunga.<br>
+    Ye galti dobara kabhi nahi hogi.<br>
+    Agar ho sake,<br>
+    to mujhe maaf kar dijiyega.
+  </p>
+  <button onclick="nextPage(1)">Dobara padhein 🔄</button>
 </div>
 
 <script>
@@ -140,7 +153,7 @@ function toggleMusic() {
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
-  heart.innerHTML = '💔';
+  heart.innerHTML = '🤍';
   heart.style.left = Math.random() * 100 + 'vw';
   heart.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
   heart.style.animationDuration = (8 + Math.random() * 8) + 's';
@@ -148,7 +161,7 @@ function createHeart() {
   document.getElementById('hearts').appendChild(heart);
   setTimeout(() => heart.remove(), 20000);
 }
-setInterval(createHeart, 1500);
+setInterval(createHeart, 1600);
 </script>
 
 </body>
