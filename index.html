@@ -1,167 +1,263 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sorry 🤍</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #1a001f, #330022);
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .page {
-      display: none;
-      max-width: 90%;
-      padding: 40px;
-      background: rgba(0,0,0,0.45);
-      border-radius: 22px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 12px 35px #000;
-    }
-    .page.active { display: block; }
-    h1 {
-      font-size: 3.2rem;
-      color: #ffd6e8;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 1.45rem;
-      line-height: 1.7;
-      margin: 28px 0;
-    }
-    button {
-      padding: 14px 38px;
-      font-size: 1.4rem;
-      background: #ff4d6d;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #ff6f91;
-      transform: scale(1.05);
-    }
-    .music {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-    .hearts {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -5;
-    }
-    .heart {
-      position: absolute;
-      font-size: 2.8rem;
-      opacity: 0;
-      animation: rise 12s linear infinite;
-    }
-    @keyframes rise {
-      0% { transform: translateY(110vh); opacity: 0; }
-      20% { opacity: 0.9; }
-      100% { transform: translateY(-30vh) translateX(var(--drift)); opacity: 0; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 🤍</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:radial-gradient(circle at top,#2b0033,#120015);
+  font-family:"Segoe UI",Arial;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* Card */
+.page{
+  display:none;
+  max-width:90%;
+  padding:45px;
+  border-radius:28px;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.55));
+  backdrop-filter:blur(14px);
+  box-shadow:0 25px 60px rgba(0,0,0,.9);
+  animation:fadeUp 1s ease;
+}
+.page.active{display:block;}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* Headings */
+h1{
+  font-size:3.4rem;
+  color:#ffd9e6;
+  text-shadow:0 0 18px rgba(255,150,190,.7);
+  animation:pulse 2.5s infinite;
+}
+@keyframes pulse{
+  0%,100%{text-shadow:0 0 12px rgba(255,150,190,.4)}
+  50%{text-shadow:0 0 28px rgba(255,150,190,.9)}
+}
+
+/* Text */
+p{
+  font-size:1.5rem;
+  line-height:1.8;
+  color:#f3e9ee;
+}
+
+/* Typewriter */
+.type span{
+  opacity:0;
+  animation:typing .6s forwards;
+}
+@keyframes typing{to{opacity:1}}
+
+/* Button */
+button{
+  margin-top:28px;
+  padding:15px 44px;
+  font-size:1.45rem;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(135deg,#ff4d6d,#ff85a2);
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(255,77,109,.5);
+}
+button:hover{transform:scale(1.08)}
+
+/* Hearts */
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+}
+.heart{
+  position:absolute;
+  animation:rise 10s linear forwards;
+}
+@keyframes rise{
+  from{transform:translateY(110vh);opacity:0}
+  20%{opacity:1}
+  to{transform:translateY(-30vh);opacity:0}
+}
+
+/* Accept box */
+#acceptBox{
+  margin-top:35px;
+  padding:18px 40px;
+  border-radius:60px;
+  background:linear-gradient(135deg,#ffffff22,#ffffff08);
+  border:2px solid rgba(255,255,255,.35);
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,180,210,.4);
+  animation:softPulse 2.5s infinite;
+}
+@keyframes softPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.06)}
+}
+#acceptText{
+  font-size:1.5rem;
+  color:#ffd9e6;
+}
+#acceptBox.accepted{
+  background:linear-gradient(135deg,#ff4d6d,#ff85a2);
+  border:none;
+}
+
+/* Emotional closure overlay */
+#closureOverlay{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,rgba(255,160,200,.25),rgba(0,0,0,.8));
+  backdrop-filter:blur(6px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 1.2s ease;
+  z-index:50;
+}
+#closureOverlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+#closureText{
+  font-size:2rem;
+  text-align:center;
+  color:#fff;
+  text-shadow:0 0 25px rgba(255,170,210,.9);
+  animation:fadeScale 1.4s ease forwards;
+}
+@keyframes fadeScale{
+  from{opacity:0;transform:scale(.9)}
+  to{opacity:1;transform:scale(1)}
+}
+</style>
 </head>
+
 <body>
 
-<div class="music" onclick="toggleMusic()">🎵</div>
 <div class="hearts" id="hearts"></div>
 
-<!-- Page 1 -->
+<!-- PAGE 1 -->
 <div class="page active" id="p1">
-  <h1>Sorry 🤍</h1>
-  <p>
-    Mujhse ek galti ho gayi…<br>
-    main hamesha aapko <b>“aap”</b> hi bolta hoon,<br>
-    par us pal zabaan phisal gayi 😔
+  <h1>Ek Baat 🤍</h1>
+  <p class="type">
+    Main hamesha aapse “aap” hi bolta hoon…<br>
+    us pal bas zubaan phisal gayi,<br>
+    aur dil ka ehsaas lafzon se aage nikal gaya 😔
   </p>
-  <button onclick="nextPage(2)">Aage padhein</button>
+  <button onclick="nextPage(2)">Aage</button>
 </div>
 
-<!-- Page 2 -->
+<!-- PAGE 2 -->
 <div class="page" id="p2">
-  <h1>Ye Meri Galti Hai</h1>
-  <p>
-    Galti sirf lafzon ki thi,<br>
-    na soch galat thi aur na hi irada.<br>
-    Agar usse aapko bura laga ho,<br>
-    to main dil se maafi chahta hoon 💔
+  <h1>Galti Sirf Lafzon Ki</h1>
+  <p class="type">
+    Jo kaha wo galat tha — maanta hoon.<br>
+    Par jo mehsoos karta hoon,<br>
+    usme kabhi confusion nahi thi 🤍
   </p>
-  <button onclick="nextPage(3)">Please samjhiye</button>
+  <button onclick="nextPage(3)">Samjhiye</button>
 </div>
 
-<!-- Page 3 -->
+<!-- PAGE 3 -->
 <div class="page" id="p3">
-  <h1>Respect 🤍</h1>
-  <p>
-    Aapki respect mere liye bahut maayne rakhti hai.<br>
-    Jo lafz galti se nikal gaya,<br>
-    wo meri soch ka hissa kabhi nahi tha.
+  <h1>Aapki Jagah</h1>
+  <p class="type">
+    Dil mein jo jagah aapki hai,<br>
+    wahan lafzon ki galti bhi pahunch nahi sakti 💔
   </p>
-  <button onclick="nextPage(4)">Ek baat aur</button>
+  <button onclick="nextPage(4)">Aakhri</button>
 </div>
 
-<!-- Page 4 -->
+<!-- PAGE 4 -->
 <div class="page" id="p4">
-  <h1>Bas Itna 🤍</h1>
-  <p>
-    Main aage se aur bhi zyada dhyaan rakhunga.<br>
-    Ye galti dobara kabhi nahi hogi.<br>
-    Agar ho sake,<br>
-    to mujhe maaf kar dijiyega.
+  <h1>Bas Dil Se</h1>
+  <p class="type">
+    Ye sirf maafi nahi…<br>
+    ye vaada hai.<br>
+    Har lafz pehle se zyada ehsaas ke saath 🤍
   </p>
-  <button onclick="nextPage(1)">Dobara padhein 🔄</button>
+
+  <div id="acceptBox" onclick="acceptApology()">
+    <span id="acceptText">🤍 Tap to accept apology</span>
+  </div>
+</div>
+
+<!-- Emotional Closure -->
+<div id="closureOverlay">
+  <div id="closureText">
+    Thank you for understanding 🤍<br><br>
+    <span style="font-size:1.3rem;opacity:.85">
+      I’ll do better. Always.
+    </span>
+  </div>
 </div>
 
 <script>
-function nextPage(num) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('p' + num).classList.add('active');
+function nextPage(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const page=document.getElementById('p'+n);
+  page.classList.add('active');
+  typeEffect(page);
 }
 
-function toggleMusic() {
-  let audio = document.getElementById('musicAudio');
-  if (!audio) {
-    audio = new Audio('https://cdn.pixabay.com/audio/2023/08/07/audio_8b9d7e8f9e.mp3');
-    audio.loop = true;
-    audio.id = 'musicAudio';
-    document.body.appendChild(audio);
+/* Typewriter */
+function typeEffect(page){
+  page.querySelectorAll('.type').forEach(el=>{
+    const text=el.innerHTML;
+    el.innerHTML='';
+    [...text].forEach((ch,i)=>{
+      const span=document.createElement('span');
+      span.innerHTML=ch;
+      span.style.animationDelay=(i*0.03)+'s';
+      el.appendChild(span);
+    });
+  });
+}
+
+/* Accept apology */
+function acceptApology(){
+  const box=document.getElementById('acceptBox');
+  const text=document.getElementById('acceptText');
+  const overlay=document.getElementById('closureOverlay');
+
+  box.classList.add('accepted');
+  text.innerHTML='🤍 Accepted';
+
+  // Heart rain
+  for(let i=0;i<45;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.innerHTML='💖';
+    h.style.left=Math.random()*100+'vw';
+    h.style.fontSize=(1.8+Math.random()*1.6)+'rem';
+    h.style.animationDuration=(6+Math.random()*4)+'s';
+    document.getElementById('hearts').appendChild(h);
+    setTimeout(()=>h.remove(),10000);
   }
-  audio.paused ? audio.play().catch(() => {}) : audio.pause();
+
+  // Emotional closure
+  setTimeout(()=>overlay.classList.add('show'),1200);
 }
 
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.innerHTML = '🤍';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
-  heart.style.animationDuration = (8 + Math.random() * 8) + 's';
-  heart.style.animationDelay = Math.random() * 4 + 's';
-  document.getElementById('hearts').appendChild(heart);
-  setTimeout(() => heart.remove(), 20000);
-}
-setInterval(createHeart, 1600);
+/* Init first page */
+typeEffect(document.getElementById('p1'));
 </script>
 
 </body>
