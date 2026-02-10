@@ -3,207 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aapke Liye Rasmalaai 💖✨</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>Sorry Rasmalaai 💔</title>
   <style>
     body {
-      margin:0; padding:0; height:100vh; overflow:hidden;
-      background: linear-gradient(135deg, #1a0026, #33001a, #260033);
-      color:#fff; font-family:'Poppins',sans-serif;
-      position:relative;
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #200033, #330022);
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    .bg-glow {
-      position:fixed; inset:0; pointer-events:none; z-index:-10;
-      background: radial-gradient(circle at 20% 80%, rgba(255,77,109,0.12), transparent 60%);
+    .page {
+      display: none;
+      max-width: 90%;
+      padding: 40px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px #000;
     }
-    .hearts-container {
-      position:fixed; inset:0; pointer-events:none; z-index:-5;
-    }
-    .heart {
-      position:absolute; font-size:clamp(1.8rem,5vw,3.5rem); opacity:0;
-      animation:floatUp 18s linear infinite;
-      text-shadow:0 0 15px #ff4d6d;
-    }
-    @keyframes floatUp {
-      0% { transform:translateY(110vh) translateX(0) rotate(0deg); opacity:0; }
-      15% { opacity:0.9; }
-      100% { transform:translateY(-30vh) translateX(var(--drift)) rotate(1440deg); opacity:0; }
-    }
-    .card {
-      position:absolute; inset:0; display:flex; flex-direction:column;
-      align-items:center; justify-content:center; padding:15px 20px;
-      text-align:center; transition:all 1s ease;
-      opacity:0; transform:scale(0.92) translateY(30px);
-      background:rgba(10,0,20,0.45); backdrop-filter:blur(16px);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:24px; max-width:520px; margin:0 auto;
-    }
-    .card.active {
-      opacity:1; transform:scale(1) translateY(0); z-index:10;
+    .page.active {
+      display: block;
     }
     h1 {
-      font-family:'Dancing Script',cursive; font-size:clamp(3.5rem,10vw,5.5rem);
-      color:#ffd6e0; margin:0.4rem 0;
-      text-shadow:0 0 30px #ff4d6d, 0 0 60px #c084fc;  /* sirf soft glow, no blink */
+      font-size: 3.2rem;
+      color: #ffccdd;
+      margin-bottom: 20px;
     }
-    p { font-size:1.25rem; line-height:1.8; max-width:90%; opacity:0.95; margin:1rem 0; }
-    button, .quiz-opt {
-      padding:1rem 2.8rem; font-size:1.2rem; margin:1rem 0.7rem;
-      border:none; border-radius:999px; cursor:pointer; color:#fff;
-      background:linear-gradient(90deg, #ff4d6d, #ff85a2, #c084fc);
-      background-size:200% 200%; animation:btnMove 12s ease infinite;
-      box-shadow:0 10px 30px rgba(255,77,109,0.45);
-      transition:all 0.4s;
+    p {
+      font-size: 1.5rem;
+      line-height: 1.6;
+      margin: 30px 0;
     }
-    button:hover, .quiz-opt:hover {
-      transform:translateY(-5px) scale(1.08);
-      box-shadow:0 20px 50px rgba(192,132,252,0.6);
+    button {
+      padding: 15px 40px;
+      font-size: 1.4rem;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
     }
-    @keyframes btnMove { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
-    .music-btn {
-      position:fixed; top:18px; right:18px; z-index:200;
-      width:58px; height:58px; border-radius:50%;
-      background:rgba(255,255,255,0.14); backdrop-filter:blur(12px);
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.9rem; cursor:pointer; transition:0.4s;
+    button:hover {
+      background: #ff6699;
+      transform: scale(1.05);
     }
-    .music-btn:hover { background:rgba(255,77,109,0.4); transform:scale(1.2); }
-    .progress-bar {
-      position:fixed; top:0; left:0; right:0; height:5px;
-      background:rgba(255,255,255,0.08); z-index:100;
+    .music {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
     }
-    .progress-fill {
-      height:100%; width:0%; background:linear-gradient(90deg, #ff4d6d, #c084fc);
-      transition:width 0.8s ease;
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -5;
     }
-    .photo-frame {
-      width:220px; height:220px; margin:1.8rem auto;
-      border-radius:50%; overflow:hidden;
-      border:7px solid rgba(255,77,109,0.5);
-      box-shadow:0 0 60px rgba(255,77,109,0.45);
+    .heart {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0;
+      animation: rise 12s linear infinite;
     }
-    .photo-frame img { width:100%; height:100%; object-fit:cover; }
-    .love-meter {
-      width:80%; max-width:360px; height:18px;
-      background:rgba(255,255,255,0.12); border-radius:999px;
-      margin:1.5rem auto; overflow:hidden;
-    }
-    .love-fill {
-      height:100%; width:0%; background:linear-gradient(90deg, #ff4d6d, #ff99cc, #c084fc);
-      transition:width 3s ease-out;
+    @keyframes rise {
+      0% { transform: translateY(110vh); opacity: 0; }
+      20% { opacity: 0.9; }
+      100% { transform: translateY(-30vh) translateX(var(--drift)); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-<div class="bg-glow"></div>
-<div class="hearts-container" id="hearts"></div>
-<div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
-
-<div class="music-btn" onclick="toggleMusic()">🎵</div>
-
-<audio id="bgSong" loop>
-  <source src="https://cdn.pixabay.com/audio/2023/08/07/audio_8b9d7e8f9e.mp3" type="audio/mpeg">
-</audio>
+<div class="music" onclick="toggleMusic()">🎵</div>
+<div class="hearts" id="hearts"></div>
 
 <!-- Pages -->
-<div class="card active" id="p1">
-  <h1>Hey Rasmalaai 💗✨</h1>
-  <p>Aapki ek muskaan se mera din roshan ho jaata hai...<br>Aur aapki awaaz sun kar dil ko sukoon milta hai 🥰</p>
-  <button onclick="goTo(2)">Shuru Karein?</button>
+<div class="page active" id="p1">
+  <h1>Sorry Rasmalaai 💔</h1>
+  <p>
+    Mujhse galti ho gayi…<br>
+    Shayad lafzon mein, shayad rawaiye mein,<br>
+    par dil se kabhi aapko dukh dena mera irada nahi tha 🥺
+  </p>
+  <button onclick="nextPage(2)">Aage padhein?</button>
 </div>
 
-<div class="card" id="p2">
-  <h1>Aap Meri Sabse Khoobsurat Wajah Ho 🌸</h1>
-  <p>Har subah aapki yaad se shuru hoti hai,<br>aur har raat aapke khayalon mein khatam... 💭💕</p>
-  <button onclick="goTo(3)">Dil ko chhu gaya 💖</button>
+<div class="page" id="p2">
+  <h1>Mujhe Afsos Hai 🌧️</h1>
+  <p>
+    Aapki khamoshi mujhe meri galti yaad dilati hai,<br>
+    aur har pal ye sochta hoon kaash waqt thoda sa peeche le ja sakta…<br>
+    Main sach mein maafi chahta hoon 💗
+  </p>
+  <button onclick="nextPage(3)">Dil se 💔</button>
 </div>
 
-<div class="card" id="p3">
-  <h1>Aapke Saath Waqt Bitana Sabse Pyara Hai 🤗</h1>
-  <p>Chup reh kar bhi aapke saath rehna kitna sundar lagta hai...<br>Shabdon ki zarurat hi nahi padti 🥺🌙</p>
-  <button onclick="goTo(4)">Aap bhi yahi sochte hain na? 😊</button>
-</div>
-
-<div class="card" id="p4">
-  <h1>Choose Your Favourite Moment with Me 🌷</h1>
-  <p>Aapko mere saath sabse zyada kya pasand hai?</p>
-  <div class="quiz-opt" onclick="chooseOption(1)">Lamba sa warm hug 🤗</div>
-  <div class="quiz-opt" onclick="chooseOption(2)">Sweet forehead kiss 😘</div>
-  <div class="quiz-opt" onclick="chooseOption(3)">Saath baith kar baatein karna 🌌</div>
-</div>
-
-<div class="card" id="p5">
-  <h1>Aapka Pyar Meter 💗</h1>
-  <div class="love-meter"><div class="love-fill" id="loveBar"></div></div>
-  <p id="loveMsg">Dekhiye aapki choice se mera dil kitna khush hua... 🥰</p>
-  <button onclick="goTo(6)">Kitna pyara hai na? ✨</button>
-</div>
-
-<div class="card" id="p6">
-  <h1>Aapki Ye Muskaan... 😍🌹</h1>
-  <div class="photo-frame">
-    <img src="https://via.placeholder.com/400/ff4d6d/ffffff?text=Aapki+Smile+💖" alt="Aapki photo">
-  </div>
-  <p>Har baar dekhta hoon toh dil garden-garden ho jaata hai 💐<br>Aap sach mein bohot khoobsurat hain 🤍</p>
-  <button onclick="goTo(7)">Aur kuch sunna chahenge? 💌</button>
-</div>
-
-<div class="card" id="p7">
-  <h1>Rasmalaai... Meri Puri Duniya Ho Aap 💖🌟</h1>
-  <p>Aapke bina ye zindagi adhoori si lagti hai...<br>Har dua mein bas aap hi aap hain.<br>Thank you for being my everything, forever 🫂💞</p>
-  <div style="font-size:5rem; margin:1.8rem 0;">🫂💗🫂</div>
-  <button onclick="restart()">Phir se shuru karein? 🔄🥰</button>
+<div class="page" id="p3">
+  <h1>Ek Mauka? 🤍</h1>
+  <p>
+    Agar mumkin ho,<br>
+    to mujhe apni galti sudharne ka ek mauka de do…<br>
+    Kyunki aap mere liye bahut mayne rakhti ho 🌙
+  </p>
+  <button onclick="nextPage(1)">Phir se padhein 🔄</button>
 </div>
 
 <script>
-// Page navigation
-function goTo(num) {
-  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+function nextPage(num) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('p' + num).classList.add('active');
-  document.getElementById('progFill').style.width = (num / 7 * 100) + '%';
 }
 
-// Quiz & Love Meter
-function chooseOption(opt) {
-  goTo(5);
-  const percent = 68 + opt * 11; // 79% to 100%
-  document.getElementById('loveBar').style.width = percent + '%';
-  document.getElementById('loveMsg').innerHTML = `Mera pyar aapke liye: <b>${percent}%</b> 💗`;
-  for(let i = 0; i < 50; i++) {
-    setTimeout(createHeart, i * 100);
-  }
-}
-
-// Music toggle
-const song = document.getElementById('bgSong');
-let playing = false;
 function toggleMusic() {
-  if (!playing) {
-    song.volume = 0.28;
-    song.play().catch(()=>{});
-    playing = true;
-  } else {
-    song.paused ? song.play() : song.pause();
+  let audio = document.getElementById('musicAudio');
+  if (!audio) {
+    audio = new Audio('https://cdn.pixabay.com/audio/2023/08/07/audio_8b9d7e8f9e.mp3');
+    audio.loop = true;
+    audio.id = 'musicAudio';
+    document.body.appendChild(audio);
   }
+  audio.paused ? audio.play().catch(() => {}) : audio.pause();
 }
 
-// Floating hearts
 function createHeart() {
-  const h = document.createElement('div');
-  h.className = 'heart';
-  h.innerHTML = ['💖','💗','🌸','✨','🫧','🌹'][Math.floor(Math.random()*6)];
-  h.style.left = Math.random()*100 + 'vw';
-  h.style.--drift = (Math.random()*160 - 80) + 'px';
-  h.style.animationDuration = (12 + Math.random()*12) + 's';
-  h.style.animationDelay = Math.random()*4 + 's';
-  document.getElementById('hearts').appendChild(h);
-  setTimeout(() => h.remove(), 40000);
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.innerHTML = '💔';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+  heart.style.animationDuration = (8 + Math.random() * 8) + 's';
+  heart.style.animationDelay = Math.random() * 4 + 's';
+  document.getElementById('hearts').appendChild(heart);
+  setTimeout(() => heart.remove(), 20000);
 }
-setInterval(createHeart, 600);
-
-// Start
-createHeart(); // initial heart
+setInterval(createHeart, 1500);
 </script>
+
 </body>
 </html>
